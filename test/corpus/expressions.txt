@@ -1,0 +1,310 @@
+================================================================================
+Binary arithmetic
+================================================================================
+
+procedure start begin
+  x := 1 + 2 * 3;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (binary_expression
+            left: (number)
+            right: (binary_expression
+              left: (number)
+              right: (number))))))))
+
+================================================================================
+Comparison operators
+================================================================================
+
+procedure start begin
+  if x == 1 and y != 2 then
+    z := 0;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (if_statement
+        condition: (binary_expression
+          left: (binary_expression
+            left: (identifier)
+            right: (number))
+          right: (binary_expression
+            left: (identifier)
+            right: (number)))
+        consequence: (expression_statement
+          (assignment_expression
+            left: (identifier)
+            right: (number)))))))
+
+================================================================================
+Unary operators
+================================================================================
+
+procedure start begin
+  x := -y;
+  z := not a;
+  w := bwnot b;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (unary_expression
+            operand: (identifier))))
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (unary_expression
+            operand: (identifier))))
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (unary_expression
+            operand: (identifier)))))))
+
+================================================================================
+Ternary expression
+================================================================================
+
+procedure start begin
+  x := value1 if (cond) else value2;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (ternary_expression
+            consequence: (identifier)
+            condition: (parenthesized_expression
+              (identifier))
+            alternative: (identifier)))))))
+
+================================================================================
+Function call expression
+================================================================================
+
+procedure start begin
+  x := obj_pid(self_obj);
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (call_expression
+            function: (identifier)
+            (argument_list
+              (identifier))))))))
+
+================================================================================
+Array subscript
+================================================================================
+
+procedure start begin
+  x := arr[0];
+  arr[1] := 5;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (subscript_expression
+            object: (identifier)
+            index: (number))))
+      (expression_statement
+        (assignment_expression
+          left: (subscript_expression
+            object: (identifier)
+            index: (number))
+          right: (number))))))
+
+================================================================================
+Member access (dot syntax)
+================================================================================
+
+procedure start begin
+  x := obj.name;
+  obj.value := 5;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (member_expression
+            object: (identifier)
+            property: (identifier))))
+      (expression_statement
+        (assignment_expression
+          left: (member_expression
+            object: (identifier)
+            property: (identifier))
+          right: (number))))))
+
+================================================================================
+Array literal
+================================================================================
+
+procedure start begin
+  x := [1, 2, 3];
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (array_expression
+            (number)
+            (number)
+            (number)))))))
+
+================================================================================
+Map literal
+================================================================================
+
+procedure start begin
+  x := {1: "one", 2: "two"};
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (map_expression
+            (map_entry
+              key: (number)
+              value: (string))
+            (map_entry
+              key: (number)
+              value: (string))))))))
+
+================================================================================
+Stringify operator
+================================================================================
+
+procedure myproc begin
+end
+
+procedure start begin
+  x := @myproc;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block))
+  (procedure_definition
+    name: (identifier)
+    (block
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (stringify_expression
+            (identifier)))))))
+
+================================================================================
+Hex and float literals
+================================================================================
+
+procedure start begin
+  x := 0xFF;
+  y := 3.14;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (number)))
+      (expression_statement
+        (assignment_expression
+          left: (identifier)
+          right: (float))))))
+
+================================================================================
+Short circuit operators
+================================================================================
+
+procedure start begin
+  if (obj andalso obj_pid(obj) == 5) then
+    x := 1;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (if_statement
+        condition: (parenthesized_expression
+          (binary_expression
+            left: (identifier)
+            right: (binary_expression
+              left: (call_expression
+                function: (identifier)
+                (argument_list
+                  (identifier)))
+              right: (number))))
+        consequence: (expression_statement
+          (assignment_expression
+            left: (identifier)
+            right: (number)))))))

@@ -1,0 +1,280 @@
+================================================================================
+If-then statement
+================================================================================
+
+procedure start begin
+  if x == 1 then
+    y := 2;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (if_statement
+        condition: (binary_expression
+          left: (identifier)
+          right: (number))
+        consequence: (expression_statement
+          (assignment_expression
+            left: (identifier)
+            right: (number)))))))
+
+================================================================================
+If-then-else statement
+================================================================================
+
+procedure start begin
+  if x == 1 then begin
+    y := 2;
+  end else begin
+    y := 3;
+  end
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (if_statement
+        condition: (binary_expression
+          left: (identifier)
+          right: (number))
+        consequence: (block
+          (expression_statement
+            (assignment_expression
+              left: (identifier)
+              right: (number))))
+        alternative: (else_clause
+          (block
+            (expression_statement
+              (assignment_expression
+                left: (identifier)
+                right: (number)))))))))
+
+================================================================================
+While loop
+================================================================================
+
+procedure start begin
+  while (i < 5) do begin
+    i++;
+  end
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (while_statement
+        condition: (parenthesized_expression
+          (binary_expression
+            left: (identifier)
+            right: (number)))
+        body: (block
+          (expression_statement
+            (update_expression
+              operand: (identifier))))))))
+
+================================================================================
+For loop with parentheses
+================================================================================
+
+procedure start begin
+  for (i := 0; i < 5; i++) begin
+    display_msg("hello");
+  end
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (for_statement
+        init: (assignment_expression
+          left: (identifier)
+          right: (number))
+        condition: (binary_expression
+          left: (identifier)
+          right: (number))
+        update: (update_expression
+          operand: (identifier))
+        body: (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list
+                (string)))))))))
+
+================================================================================
+Foreach loop
+================================================================================
+
+procedure start begin
+  foreach (item in mylist) begin
+    display_msg("" + item);
+  end
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (foreach_statement
+        element: (identifier)
+        collection: (identifier)
+        body: (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list
+                (binary_expression
+                  left: (string)
+                  right: (identifier))))))))))
+
+================================================================================
+Foreach with key:value
+================================================================================
+
+procedure start begin
+  foreach (key: value in mymap) begin
+    display_msg(key);
+  end
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (foreach_statement
+        element: (identifier)
+        element2: (identifier)
+        collection: (identifier)
+        body: (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list
+                (identifier)))))))))
+
+================================================================================
+Switch statement
+================================================================================
+
+procedure start begin
+  switch x begin
+    case 1:
+      display_msg("one");
+    case 2:
+      display_msg("two");
+    default:
+      display_msg("other");
+  end
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (switch_statement
+        value: (identifier)
+        (case_clause
+          value: (number)
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list
+                (string)))))
+        (case_clause
+          value: (number)
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list
+                (string)))))
+        (default_clause
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list
+                (string)))))))))
+
+================================================================================
+Call statement
+================================================================================
+
+procedure myproc begin
+end
+
+procedure start begin
+  call myproc;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block))
+  (procedure_definition
+    name: (identifier)
+    (block
+      (call_statement
+        function: (identifier)))))
+
+================================================================================
+Return statement
+================================================================================
+
+procedure calc begin
+  return 42;
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (return_statement
+        (number)))))
+
+================================================================================
+Break and continue
+================================================================================
+
+procedure start begin
+  while (true) do begin
+    if done then break;
+    continue;
+  end
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (while_statement
+        condition: (parenthesized_expression
+          (boolean))
+        body: (block
+          (if_statement
+            condition: (identifier)
+            consequence: (break_statement))
+          (continue_statement))))))

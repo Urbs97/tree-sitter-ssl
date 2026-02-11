@@ -1,0 +1,107 @@
+================================================================================
+Simple variable
+================================================================================
+
+variable x;
+
+procedure start begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_declarator
+      name: (identifier)))
+  (procedure_definition
+    name: (identifier)
+    (block)))
+
+================================================================================
+Multiple variables
+================================================================================
+
+variable a, b, c;
+
+procedure start begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_declarator
+      name: (identifier))
+    (variable_declarator
+      name: (identifier))
+    (variable_declarator
+      name: (identifier)))
+  (procedure_definition
+    name: (identifier)
+    (block)))
+
+================================================================================
+Variable with initialization
+================================================================================
+
+variable x := 5;
+
+procedure start begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_declarator
+      name: (identifier)
+      (number)))
+  (procedure_definition
+    name: (identifier)
+    (block)))
+
+================================================================================
+Variable begin block
+================================================================================
+
+variable begin
+  x;
+  y;
+  z;
+end
+
+procedure start begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_declarator
+      name: (identifier))
+    (variable_declarator
+      name: (identifier))
+    (variable_declarator
+      name: (identifier)))
+  (procedure_definition
+    name: (identifier)
+    (block)))
+
+================================================================================
+Array variable
+================================================================================
+
+procedure start begin
+  variable a[10];
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block
+      (variable_declaration
+        (variable_declarator
+          name: (identifier)
+          (number))))))

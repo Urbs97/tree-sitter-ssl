@@ -1,0 +1,145 @@
+================================================================================
+Simple procedure
+================================================================================
+
+procedure start begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block)))
+
+================================================================================
+Procedure with parameters
+================================================================================
+
+procedure test(variable x, variable y) begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (parameter_list
+      (parameter
+        name: (identifier))
+      (parameter
+        name: (identifier)))
+    (block)))
+
+================================================================================
+Procedure with default parameters
+================================================================================
+
+procedure test(variable x, variable y := 0) begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (parameter_list
+      (parameter
+        name: (identifier))
+      (parameter
+        name: (identifier)
+        default: (number)))
+    (block)))
+
+================================================================================
+Forward declaration
+================================================================================
+
+procedure myproc;
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)))
+
+================================================================================
+Critical procedure
+================================================================================
+
+critical procedure handler begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (block)))
+
+================================================================================
+Pure procedure
+================================================================================
+
+pure procedure calculate(variable x) begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (parameter_list
+      (parameter
+        name: (identifier)))
+    (block)))
+
+================================================================================
+Inline procedure
+================================================================================
+
+inline procedure helper(variable x) begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    (parameter_list
+      (parameter
+        name: (identifier)))
+    (block)))
+
+================================================================================
+Timed procedure
+================================================================================
+
+procedure ticker in 100 begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    time: (number)
+    (block)))
+
+================================================================================
+Conditional procedure
+================================================================================
+
+procedure checker when (x > 0) begin
+end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (procedure_definition
+    name: (identifier)
+    condition: (parenthesized_expression
+      (binary_expression
+        left: (identifier)
+        right: (number)))
+    (block)))
